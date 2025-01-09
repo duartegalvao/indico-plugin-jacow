@@ -1,5 +1,5 @@
 # This file is part of the JACoW plugin.
-# Copyright (C) 2021 - 2024 CERN
+# Copyright (C) 2021 - 2025 CERN
 #
 # The CERN Indico plugins are free software; you can redistribute
 # them and/or modify them under the terms of the MIT License; see
@@ -153,10 +153,7 @@ class JACOWPlugin(IndicoPlugin):
             return {'disable_affiliations': True, 'jacow_affiliations': True}
 
     def _person_required_fields(self, form, **kwargs):
-        if (
-            isinstance(form, (AbstractForm, ContributionForm)) and
-            persons_settings.get(form.event, 'enforce_user_search')
-        ):
+        if isinstance(form, (AbstractForm, ContributionForm)):
             return ['first_name', 'email']
 
     def _abstract_accepted(self, abstract, contribution, **kwargs):
